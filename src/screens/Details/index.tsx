@@ -10,7 +10,8 @@ import {
 } from '../../constants/constants';
 import PinchableImage from '../../components/PinchableImage';
 import {ImageData} from '../../types/types';
-import NavigationButton from '../../components/NavigationButton';
+import NavigationButton from '../../components/Buttons/NavigationButton';
+import TypicalButton from '../../components/Buttons/TypicalButton';
 
 type detailsScreenProp = StackNavigationProp<RootStackParamList, 'Details'>;
 
@@ -45,15 +46,16 @@ const DetailsScreen: React.FC<{route: {params: ImageData}}> = ({route}) => {
       <View style={styles.tagsContainer}>
         {unProxyTags.length > 0 ? (
           unProxyTags.map((tag: string, index: number) => (
-            <TouchableOpacity
+            <TypicalButton
               key={`${id}${tag}`}
-              style={[
+              action={() => handleTagClick(tag)}
+              text={tag}
+              buttonStyles={[
                 styles.tagBorderBox,
                 index === unProxyTags.length - 1 && {marginRight: 0},
               ]}
-              onPress={() => handleTagClick(tag)}>
-              <Text style={styles.text}>{tag}</Text>
-            </TouchableOpacity>
+              textStyles={styles.text}
+            />
           ))
         ) : (
           <Text style={styles.text}>Пользователь не указал теги 😔</Text>

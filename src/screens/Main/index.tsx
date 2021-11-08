@@ -6,7 +6,7 @@ import {RootStackParamList} from '../RootStackParams';
 import MainImages from '../../components/ListOfImages';
 import {ImageData} from '../../types/types';
 import {mainBackgroundColor} from '../../constants/constants';
-import NavigationButton from '../../components/NavigationButton';
+import NavigationButton from '../../components/Buttons/NavigationButton';
 
 type mainScreenProp = StackNavigationProp<RootStackParamList, 'Main'>;
 

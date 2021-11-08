@@ -18,7 +18,7 @@ import {
   mainBackgroundColor,
   mainTextColor,
 } from '../../constants/constants';
-import NavigationButton from '../../components/NavigationButton';
+import NavigationButton from '../../components/Buttons/NavigationButton';
 import {getSearchedImages} from '../../services/imagesAPI';
 import {ImageData, ImageFullData} from '../../types/types';
 import store from '../../store/store';

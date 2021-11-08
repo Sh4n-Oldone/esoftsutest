@@ -1,14 +1,18 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {buttonsColor, mainTextColor} from '../../constants/constants';
+import {StyleSheet, View} from 'react-native';
+import {buttonsColor, mainTextColor} from '../../../constants/constants';
+import TypicalButton from '../TypicalButton';
 
 const NavigationButton: React.FC<{navigateCallback: () => void; text: string}> =
   ({navigateCallback, text}) => {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={navigateCallback}>
-          <Text style={styles.buttonText}>{text}</Text>
-        </TouchableOpacity>
+        <TypicalButton
+          action={navigateCallback}
+          text={text}
+          buttonStyles={styles.button}
+          textStyles={styles.buttonText}
+        />
       </View>
     );
   };

@@ -1,16 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {observer} from 'mobx-react';
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Dimensions, StyleSheet, View} from 'react-native';
 import store from '../../store/store';
 import {ImageData} from '../../types/types';
 import ScrollableContainer from '../ScrollableContainer';
+import TypicalButton from '../Buttons/TypicalButton';
 
 const screen = Dimensions.get('window');
 
@@ -32,20 +27,18 @@ const ListOfImages: React.FC<{navigate: (image: ImageData) => void}> = ({
   return (
     <>
       <View style={styles.switchersContainer}>
-        <TouchableOpacity
-          onPress={handleColumnsSwitch}
-          style={styles.buttonSwitcher}>
-          <Text style={styles.switcherText}>
-            {oneColumn ? 'В ДВЕ КОЛОНКИ' : 'В ОДНУ КОЛОНКУ'}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={handleStyleSwitch}
-          style={styles.buttonSwitcher}>
-          <Text style={styles.switcherText}>
-            {isStyleWithMargins ? 'С ПРОБЕЛАМИ' : 'МОНОЛИТНЫЙ'}
-          </Text>
-        </TouchableOpacity>
+        <TypicalButton
+          action={handleColumnsSwitch}
+          text={oneColumn ? 'В ДВЕ КОЛОНКИ' : 'В ОДНУ КОЛОНКУ'}
+          buttonStyles={styles.buttonSwitcher}
+          textStyles={styles.switcherText}
+        />
+        <TypicalButton
+          action={handleStyleSwitch}
+          text={isStyleWithMargins ? 'С ПРОБЕЛАМИ' : 'МОНОЛИТНЫЙ'}
+          buttonStyles={styles.buttonSwitcher}
+          textStyles={styles.switcherText}
+        />
       </View>
       <ScrollableContainer
         images={store.images}
