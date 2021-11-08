@@ -2,9 +2,7 @@ import React, {useState} from 'react';
 import {
   Animated,
   StyleSheet,
-  Text,
   View,
-  TouchableOpacity,
   Dimensions,
   ActivityIndicator,
 } from 'react-native';
@@ -14,6 +12,7 @@ import {
   mainBackgroundColor,
   mainTextColor,
 } from '../../constants/constants';
+import TypicalButton from '../Buttons/TypicalButton';
 
 const screen = Dimensions.get('window');
 
@@ -58,9 +57,12 @@ const PinchableImage: React.FC<{url: string; handleClose: () => void}> = ({
           onLoadEnd={handleLoading}
         />
       </PinchGestureHandler>
-      <TouchableOpacity onPress={handleClose} style={styles.backButton}>
-        <Text style={styles.backButtonText}>ЗАКРЫТЬ</Text>
-      </TouchableOpacity>
+      <TypicalButton
+        action={handleClose}
+        text={'ЗАКРЫТЬ'}
+        buttonStyles={styles.backButton}
+        textStyles={styles.backButtonText}
+      />
     </View>
   );
 };
