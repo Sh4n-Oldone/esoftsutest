@@ -14,15 +14,12 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../RootStackParams';
 import {
   buttonsColor,
-  localImages,
   mainBackgroundColor,
   mainTextColor,
 } from '../../constants/constants';
 import NavigationButton from '../../components/Buttons/NavigationButton';
 import {getSearchedImages} from '../../services/imagesAPI';
-import {ImageData, ImageFullData} from '../../types/types';
-import store from '../../store/store';
-import {storeData} from '../../tools/localStorage';
+import {ImageData} from '../../types/types';
 import ScrollableContainer from '../../components/ScrollableContainer';
 
 type searchScreenProp = StackNavigationProp<RootStackParamList, 'Search'>;
@@ -50,46 +47,11 @@ const SearchScreen: React.FC<{route: {params: {tag: string}}}> = ({route}) => {
     Keyboard.dismiss();
     setInputText('');
     setIsLoading(true);
-    getSearchedImages(searchText.toLowerCase()).then(
-      (loaded: {results: Array<ImageFullData>}) => {
-        setIsLoading(false);
-        if (typeof loaded !== 'string' && loaded.results.length > 0) {
-          const reworkedData = loaded.results.map(
-            (image: ImageFullData) =>
-              ({
-                id: image.id,
-                url: image.urls.regular,
-                urlBiggest: image.urls.full,
-                description:
-                  image.description ||
-                  image.alt_description ||
-                  `imaginary by ${image.user.username}`,
-                created: new Date(image.created_at).toISOString().slice(0, 10),
-                author: image.user.username,
-                tags: Object.keys(image.topic_submissions),
-              } as ImageData),
-          );
-          store.loadImages(reworkedData);
-          setImagesArray(reworkedData);
-          setIsRequestDied('');
-          storeData(reworkedData, localImages);
-          return;
-        }
-
-        if (typeof loaded !== 'string' && loaded.results.length === 0) {
-          console.error('Ответ пришёл, но массив пуст');
-          setImagesArray([]);
-          setIsRequestDied('Я НЕ СМОГ НИЧЕГО НАЙТИ 😔');
-          return;
-        }
-
-        if (typeof loaded === 'string') {
-          console.error('Ошибка ответа сервера: ', loaded);
-          setImagesArray([]);
-          setIsRequestDied('🛠️ ОШИБКА СЕРВЕРА 🛠️');
-          return;
-        }
-      },
+    getSearchedImages(
+      searchText.toLowerCase(),
+      setIsLoading,
+      setImagesArray,
+      setIsRequestDied,
     );
   };
 
