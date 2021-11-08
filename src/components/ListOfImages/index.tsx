@@ -1,16 +1,16 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {observer} from 'mobx-react';
 import {
   Dimensions,
-  Image,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import store from '../../store/store';
-import {ScrollView} from 'react-native-gesture-handler';
 import {ImageData} from '../../types/types';
+import ScrollableContainer from '../ScrollableContainer';
 
 const screen = Dimensions.get('window');
 
@@ -47,37 +47,26 @@ const ListOfImages: React.FC<{navigate: (image: ImageData) => void}> = ({
           </Text>
         </TouchableOpacity>
       </View>
-      <ScrollView style={styles.imagesScrollableBox}>
-        <View
-          style={[
-            styles.imagesCompound,
-            isStyleWithMargins && {paddingBottom: 50},
-          ]}>
-          {store.images.map(image => (
-            <TouchableOpacity
-              key={image.id}
-              style={[
-                isStyleWithMargins
-                  ? styles.imageContainer
-                  : styles.imageContainerWithMargins,
-                {
-                  width: oneColumn
-                    ? '100%'
-                    : isStyleWithMargins
-                    ? '50%'
-                    : (screen.width - 20) / 2,
-                },
-              ]}
-              onPress={() => handleImageClick(image)}>
-              <Image
-                key={image.id}
-                source={{uri: image.url}}
-                style={styles.image}
-              />
-            </TouchableOpacity>
-          ))}
-        </View>
-      </ScrollView>
+      <ScrollableContainer
+        images={store.images}
+        imageClick={handleImageClick}
+        newContainerStyles={[
+          styles.imagesCompound,
+          isStyleWithMargins && {paddingBottom: 50},
+        ]}
+        newImageStyles={[
+          isStyleWithMargins
+            ? styles.imageContainer
+            : styles.imageContainerWithMargins,
+          {
+            width: oneColumn
+              ? '100%'
+              : isStyleWithMargins
+              ? '50%'
+              : (screen.width - 20) / 2,
+          },
+        ]}
+      />
     </>
   );
 };
@@ -102,9 +91,6 @@ const styles = StyleSheet.create({
   switcherText: {
     color: '#FFF',
     fontSize: 12,
-  },
-  imagesScrollableBox: {
-    width: '100%',
   },
   imagesCompound: {
     flexDirection: 'row',

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
   View,
-  ScrollView,
   Text,
   StyleSheet,
   TextInput,
@@ -24,10 +23,14 @@ import {getSearchedImages} from '../../services/imagesAPI';
 import {ImageData, ImageFullData} from '../../types/types';
 import store from '../../store/store';
 import {storeData} from '../../tools/localStorage';
+import ScrollableContainer from '../../components/ScrollableContainer';
 
 type searchScreenProp = StackNavigationProp<RootStackParamList, 'Search'>;
 
 const SearchScreen: React.FC<{route: {params: {tag: string}}}> = ({route}) => {
+  // viva la batching
+  // но в старых версиях реакта я бы сделал один стейт с объектом
+  // и работал с его ключами через prev запись
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [imagesArray, setImagesArray] = useState<ImageData[] | []>([]);
@@ -121,25 +124,11 @@ const SearchScreen: React.FC<{route: {params: {tag: string}}}> = ({route}) => {
         </View>
       )}
       {!isRequestDied && !isLoading ? (
-        <ScrollView style={styles.scrollableContainer}>
-          <View style={styles.imagesContainer}>
-            {imagesArray.map((image, index) => (
-              <TouchableOpacity
-                key={image.id}
-                style={[
-                  styles.imageContainer,
-                  index === imagesArray.length - 1 && {marginBottom: 0},
-                ]}
-                onPress={() => handleImageClick(image)}>
-                <Image
-                  key={image.id}
-                  source={{uri: image.url}}
-                  style={styles.image}
-                />
-              </TouchableOpacity>
-            ))}
-          </View>
-        </ScrollView>
+        <ScrollableContainer
+          componentWidth={'95%'}
+          images={imagesArray}
+          imageClick={handleImageClick}
+        />
       ) : (
         <View style={styles.badReqContainer}>
           <Text style={styles.badReqText}>{isRequestDied}</Text>
@@ -171,12 +160,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  scrollableContainer: {
-    width: '95%',
-  },
-  imagesContainer: {
-    paddingBottom: 46,
-  },
   input: {
     height: '100%',
     width: '85%',
@@ -193,14 +176,6 @@ const styles = StyleSheet.create({
     width: '70%',
     height: '70%',
     resizeMode: 'contain',
-  },
-  imageContainer: {
-    height: 400,
-    marginBottom: 10,
-  },
-  image: {
-    height: '100%',
-    width: '100%',
   },
   badReqContainer: {
     height: '85%',
