@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  TextInput,
   TouchableOpacity,
   Image,
   Keyboard,
@@ -21,6 +20,7 @@ import NavigationButton from '../../components/Buttons/NavigationButton';
 import {getSearchedImages} from '../../services/imagesAPI';
 import {ImageData} from '../../types/types';
 import ScrollableContainer from '../../components/ScrollableContainer';
+import SearchInput from '../../components/SearchInput';
 
 type searchScreenProp = StackNavigationProp<RootStackParamList, 'Search'>;
 
@@ -65,11 +65,9 @@ const SearchScreen: React.FC<{route: {params: {tag: string}}}> = ({route}) => {
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          onChangeText={text => setInputText(text.replace(/[^A-Za-z-]/g, ''))}
-          value={inputText}
-          placeholder="Используйте английскую раскладку"
+        <SearchInput
+          textHandler={text => setInputText(text.replace(/[^A-Za-z-]/g, ''))}
+          inputValue={inputText}
         />
         <TouchableOpacity
           style={styles.submitButton}
@@ -82,7 +80,7 @@ const SearchScreen: React.FC<{route: {params: {tag: string}}}> = ({route}) => {
       </View>
       {isLoading && (
         <View style={styles.loaderContainer}>
-          <ActivityIndicator size="large" color="#00659C" />
+          <ActivityIndicator size='large' color='#00659C' />
         </View>
       )}
       {!isRequestDied && !isLoading ? (
@@ -121,12 +119,6 @@ const styles = StyleSheet.create({
     height: '85%',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  input: {
-    height: '100%',
-    width: '85%',
-    padding: 10,
-    backgroundColor: '#fff',
   },
   submitButton: {
     width: '15%',

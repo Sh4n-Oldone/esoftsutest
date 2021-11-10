@@ -44,7 +44,7 @@ const PinchableImage: React.FC<{url: string; handleClose: () => void}> = ({
     <View style={styles.pinchBox}>
       {isLoading && (
         <View style={styles.loaderContainer}>
-          <ActivityIndicator size="large" color="#00659C" />
+          <ActivityIndicator size='large' color='#00659C' />
         </View>
       )}
       <PinchGestureHandler
@@ -53,7 +53,7 @@ const PinchableImage: React.FC<{url: string; handleClose: () => void}> = ({
         <Animated.Image
           source={{uri: url}}
           style={[styles.fullScreenImage, {transform: [{scale}]}]}
-          resizeMode="contain"
+          resizeMode='contain'
           onLoadEnd={handleLoading}
         />
       </PinchGestureHandler>

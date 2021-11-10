@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Correctly rendered button NavigationButton with 2 props renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "bottom": 10,
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "position": "absolute",
+    }
+  }
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    nativeID="animatedComponent"
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#00659C",
+        "borderRadius": 20,
+        "minWidth": 100,
+        "opacity": 1,
+        "paddingHorizontal": 10,
+        "paddingVertical": 6,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#fff",
+          "textAlign": "center",
+        }
+      }
+    >
+      bttn
+    </Text>
+  </View>
+</View>
+`;

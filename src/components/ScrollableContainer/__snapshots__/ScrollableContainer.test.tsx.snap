@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Correctly rendered ScrollableContainer Rendered with all props 1`] = `
+<RCTScrollView
+  style={
+    Object {
+      "width": "200",
+    }
+  }
+>
+  <View>
+    <View
+      style={
+        Array [
+          Object {
+            "backGroundColor": "#000",
+          },
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        nativeID="animatedComponent"
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backGroundColor": "#fff",
+            "opacity": 1,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://images.unsplash.com/photo-1504297050568-910d24c426d3",
+            }
+          }
+          style={
+            Object {
+              "height": "100%",
+              "width": "100%",
+            }
+          }
+        />
+      </View>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        nativeID="animatedComponent"
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backGroundColor": "#fff",
+            "opacity": 1,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://images.unsplash.com/photo-1504297050568-910d24c426d4",
+            }
+          }
+          style={
+            Object {
+              "height": "100%",
+              "width": "100%",
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`Correctly rendered ScrollableContainer Rendered with necessary props 1`] = `
+<RCTScrollView
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+>
+  <View>
+    <View
+      style={
+        Array [
+          Object {
+            "paddingBottom": 46,
+          },
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        nativeID="animatedComponent"
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "height": 400,
+            "marginBottom": 10,
+            "opacity": 1,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://images.unsplash.com/photo-1504297050568-910d24c426d3",
+            }
+          }
+          style={
+            Object {
+              "height": "100%",
+              "width": "100%",
+            }
+          }
+        />
+      </View>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        nativeID="animatedComponent"
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "height": 400,
+            "marginBottom": 0,
+            "opacity": 1,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://images.unsplash.com/photo-1504297050568-910d24c426d4",
+            }
+          }
+          style={
+            Object {
+              "height": "100%",
+              "width": "100%",
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
